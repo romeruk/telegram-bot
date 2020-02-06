@@ -24,6 +24,9 @@ bot.hears([new RegExp('^\\/roll \\d+\\-\\d+$'), new RegExp('^\\/roll$')], (ctx) 
   const { text } = ctx.message;
   let [from, to] = text.slice(6, text.length).split('-');
 
+  from = parseInt(from, 10);
+  to = parseInt(to, 10);
+
   if ((from && to) && (from < to)) {
 
     if (from > Number.MAX_SAFE_INTEGER) {
