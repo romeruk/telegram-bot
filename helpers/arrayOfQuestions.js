@@ -103,8 +103,8 @@ const questions = [
   },
   {
     question: "З якої хвилини випадають предмети 5 розряду?",
-    answerOptions: ["З 30 хвилини", "З 40 хвилини", "З 50 хвилини", "З 60 хвилини"],
-    rightAnswer: variants[3]
+    answerOptions: ["З 40 хвилини", "З 50 хвилини", "З 60 хвилини", "З 70 хвилини"],
+    rightAnswer: variants[2]
   },
   {
     question: "Хто переміг в The Frankfurt Major 2015?",

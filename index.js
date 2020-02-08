@@ -11,7 +11,7 @@ bot.start((ctx) => ctx.reply('Welcome'))
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
 
 const helpMesssage = `
-There are available commands:
+Доступні команди:
 /roll, рандомне число від 0 - 100
 /roll <from-to>, діапазон ролів (Приклад: /roll 1-1000 )
 /pos, рандомно призначає позицію
@@ -91,30 +91,13 @@ bot.command("question", ctx => {
 
 });
 
-bot.action(variants[0], (ctx) => {
-  console.log("someone type")
-  isRightAnswer(ctx);
-  ctx.answerCbQuery()
-});
-
-bot.action(variants[1], (ctx) => {
-  console.log("someone type")
-  isRightAnswer(ctx);
-  ctx.answerCbQuery()
-});
-
-bot.action(variants[2], (ctx) => {
-  console.log("someone type")
-  isRightAnswer(ctx);
-  ctx.answerCbQuery()
-});
-
-bot.action(variants[3], (ctx) => {
-  console.log("someone type")
-  isRightAnswer(ctx);
-  ctx.answerCbQuery()
-});
-
+//register actions 
+for (let [_, value] of Object.entries(variants)) {
+  bot.action(value, (ctx) => {
+    isRightAnswer(ctx);
+    ctx.answerCbQuery()
+  });
+}
 
 // bot.command("dotaheroes", async ctx => {
 
