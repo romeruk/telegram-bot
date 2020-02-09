@@ -26,18 +26,21 @@ bot.help((ctx) => {
 bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], (ctx) => {
   const { text } = ctx.message;
   let [from, to] = text.slice(6, text.length).split('-');
+  const max = 2147483647;
 
   from = parseInt(from, 10);
   to = parseInt(to, 10);
 
-  if ((from && to) && (from < to)) {
+  console.log((from && to) && (from < to));
 
-    if (from > Number.MAX_SAFE_INTEGER) {
-      from = Number.MAX_SAFE_INTEGER;
+  if ((!isNaN(from) && !isNaN(to)) && (from < to)) {
+
+    if (from > max) {
+      from = max;
     }
 
-    if (to > Number.MAX_SAFE_INTEGER) {
-      to = Number.MAX_SAFE_INTEGER;
+    if (to > max) {
+      to = max;
     }
 
     return ctx.reply(randomNumber(from, to));
