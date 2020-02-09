@@ -27,6 +27,21 @@ const questions = [
     rightAnswer: variants[2]
   },
   {
+    question: "Хто переміг в The Frankfurt Major 2015?",
+    answerOptions: ["OG", "Secret", "Evil Geniuses", "EHOME"],
+    rightAnswer: variants[0]
+  },
+  {
+    question: "Хто переміг в The Boston Major 2016?",
+    answerOptions: ["Evil Geniuses ", "Ad Finem", "OG", "Digital Chaos"],
+    rightAnswer: variants[2]
+  },
+  {
+    question: "Хто переміг в ESL One Katowice 2018?",
+    answerOptions: ["Fnatic", "Vici Gaming", "Team Liquid", "Virtus.pro"],
+    rightAnswer: variants[3]
+  },
+  {
     question: "Нейтральні предмети 1 розряду випадають з: ",
     answerOptions: ["3 хвилини", "5 хвилини", "7 хвилини", "10 хвилини"],
     rightAnswer: variants[2]
@@ -105,22 +120,7 @@ const questions = [
     question: "З якої хвилини випадають предмети 5 розряду?",
     answerOptions: ["З 40 хвилини", "З 50 хвилини", "З 60 хвилини", "З 70 хвилини"],
     rightAnswer: variants[2]
-  },
-  {
-    question: "Хто переміг в The Frankfurt Major 2015?",
-    answerOptions: ["OG", "Secret", "Evil Geniuses", "EHOME"],
-    rightAnswer: variants[0]
-  },
-  {
-    question: "Хто переміг в The Boston Major 2016?",
-    answerOptions: ["Evil Geniuses ", "Ad Finem", "OG", "Digital Chaos"],
-    rightAnswer: variants[2]
-  },
-  {
-    question: "Хто переміг в ESL One Katowice 2018?",
-    answerOptions: ["Fnatic", "Vici Gaming", "Team Liquid", "Virtus.pro"],
-    rightAnswer: variants[3]
-  },
+  }
 ];
 
 module.exports = {

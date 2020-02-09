@@ -16,7 +16,7 @@ const helpMesssage = `
 /roll <from-to>, діапазон ролів (Приклад: /roll 1-1000 )
 /pos, рандомно призначає позицію
 /question, рандомне запитання
-@Ecc1bot herostats:  <page>, виводисть список героїв по 50 штук (в доті 130 героїв)
+@Ecc1bot herostats:  <page>, (@Ecc1bot herostats: 1) доступно 3 сторінки
 `;
 
 bot.help((ctx) => {
@@ -98,30 +98,6 @@ for (let [_, value] of Object.entries(variants)) {
     ctx.answerCbQuery()
   });
 }
-
-// bot.command("dotaheroes", async ctx => {
-
-//   let msg = "";
-//   const chunkSize = 4096;
-
-//   try {
-//     const heroes = await axios.get(`${process.env.OPEN_DOTA_BASE_API_URL}/heroes?api_key=${process.env.OPEN_DOTA_KEY}`);
-
-//     for (const hero of heroes.data) {
-//       msg += `<b>${hero.localized_name}</b>: ${hero.roles.join()}\n`;
-//     }
-
-//     for (let i = 0; i < msg.length; i += chunkSize) {
-//       const chunk = msg.slice(i, i + chunkSize + 1);
-//       ctx.reply(chunk, {
-//         parse_mode: "HTML"
-//       });
-//     }
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
 bot.inlineQuery(/^herostats: \d+$/, async (ctx) => {
   const { query } = ctx.inlineQuery;
