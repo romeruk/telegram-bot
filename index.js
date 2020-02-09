@@ -1,12 +1,15 @@
 const Telegraf = require('telegraf');
+const rateLimit = require('telegraf-ratelimit');
 const axios = require("axios");
 require('dotenv').config();
 const { randomNumber } = require('./helpers/math');
 const { isRightAnswer } = require('./helpers/question');
 const { questions, variants } = require('./helpers/arrayOfQuestions');
 const { primary_attr, attack_type } = require('./helpers/listheroeshelper');
+const { limitConfig, questionLimitConfig } = require('./config/limits');
 
 const bot = new Telegraf(process.env.API_TOKEN);
+bot.use(rateLimit(limitConfig))
 bot.start((ctx) => ctx.reply('Welcome'))
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
 
@@ -67,7 +70,7 @@ bot.command("pos", (ctx) => {
   });
 });
 
-bot.command("question", ctx => {
+bot.command("question", rateLimit(questionLimitConfig), ctx => {
 
   const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
