@@ -1,17 +1,14 @@
 const Telegraf = require('telegraf');
-const rateLimit = require('telegraf-ratelimit');
 const axios = require("axios");
 require('dotenv').config();
 const { randomNumber } = require('./helpers/math');
 const { isRightAnswer } = require('./helpers/question');
 const { questions, variants } = require('./helpers/arrayOfQuestions');
 const { primary_attr, attack_type } = require('./helpers/listheroeshelper');
-const { limitConfig, questionLimitConfig } = require('./config/limits');
+// const { limitConfig } = require('./config/limit');
 
 const bot = new Telegraf(process.env.API_TOKEN);
-bot.use(rateLimit(limitConfig))
 bot.start((ctx) => ctx.reply('Welcome'))
-// bot.on('sticker', (ctx) => ctx.reply('👍'))
 
 const helpMesssage = `
 Доступні команди:
@@ -34,8 +31,6 @@ bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], (ctx) => {
   from = parseInt(from, 10);
   to = parseInt(to, 10);
 
-  console.log((from && to) && (from < to));
-
   if ((!isNaN(from) && !isNaN(to)) && (from < to)) {
 
     if (from > max) {
@@ -49,7 +44,7 @@ bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], (ctx) => {
     return ctx.reply(randomNumber(from, to));
   }
 
-  return ctx.reply(randomNumber(0, 100));
+  return ctx.reply(randomNumber(1, 100));
 
 });
 
@@ -70,7 +65,7 @@ bot.command("pos", (ctx) => {
   });
 });
 
-bot.command("question", rateLimit(questionLimitConfig), ctx => {
+bot.command("question", ctx => {
 
   const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
