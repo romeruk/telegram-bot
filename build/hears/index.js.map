@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/hears/index.js"],"names":["bot"],"mappings":";;;;;;;AAAA;;;;eAEe,kBAACA,GAAD,EAAS;AACtB,wBAAKA,GAAL;AACD,C","sourcesContent":["import roll from './roll';\r\n\r\nexport default (bot) => {\r\n  roll(bot);\r\n}"],"file":"index.js"}

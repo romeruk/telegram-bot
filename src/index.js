@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import Telegraf from 'telegraf';
 import commands from './commands/';
 import hears from './hears/';

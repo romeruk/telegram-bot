@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/inlineQueries/index.js"],"names":["bot"],"mappings":";;;;;;;AAAA;;;;eAEe,kBAACA,GAAD,EAAS;AACtB,6BAAUA,GAAV;AACD,C","sourcesContent":["import herostats from './herostats';\r\n\r\nexport default (bot) => {\r\n  herostats(bot);\r\n}"],"file":"index.js"}
