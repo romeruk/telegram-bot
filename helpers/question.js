@@ -1,6 +1,6 @@
-const { questions } = require('./arrayOfQuestions');
+import { questions } from './arrayOfQuestions';
 
-function isRightAnswer(ctx) {
+export const isRightAnswer = (ctx) => {
   const { text } = ctx.callbackQuery.message;
   const { first_name, last_name } = ctx.callbackQuery.from;
   let filterQuestion = questions.find(q => q.question.trim().toLowerCase() === text.trim().toLowerCase());
@@ -16,8 +16,4 @@ function isRightAnswer(ctx) {
       parse_mode: "HTML"
     });
   }
-}
-
-module.exports = {
-  isRightAnswer
 }

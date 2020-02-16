@@ -1,11 +1,11 @@
-const variants = {
+export const variants = {
   0: "first",
   1: "second",
   2: "third",
   3: "fourth"
 }
 
-const questions = [
+export const questions = [
   {
     question: "When does the first night start?",
     answerOptions: ["At minute 4:00", "At minute 5:00", "At minute 6:00", "At minute 10:00"],
@@ -122,8 +122,3 @@ const questions = [
     rightAnswer: variants[2]
   }
 ];
-
-module.exports = {
-  questions,
-  variants
-}

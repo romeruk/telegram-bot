@@ -1,4 +1,4 @@
-function primary_attr(attr) {
+export const primary_attr = (attr) => {
   let pAttr = "";
   switch (attr) {
     case "agi":
@@ -17,7 +17,7 @@ function primary_attr(attr) {
   return pAttr;
 }
 
-function attack_type(type) {
+export const attack_type = (type) => {
   let AttackType = "";
   switch (type) {
     case "Melee":
@@ -31,9 +31,4 @@ function attack_type(type) {
   }
 
   return AttackType;
-}
-
-module.exports = {
-  primary_attr,
-  attack_type
 }

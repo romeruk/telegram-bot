@@ -1,19 +1,25 @@
 {
-  "name": "telegramBbot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "dotenv": "^8.2.0",
-    "nodemon": "^2.0.2",
-    "telegraf": "^3.36.0"
-  }
+	"name": "telegramBbot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --exec babel-node index.js",
+		"start": "babel-node index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.19.2",
+		"dotenv": "^8.2.0",
+		"nodemon": "^2.0.2",
+		"telegraf": "^3.36.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.8.4",
+		"@babel/node": "^7.8.4",
+		"@babel/preset-env": "^7.8.4"
+	}
 }
