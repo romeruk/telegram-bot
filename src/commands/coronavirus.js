@@ -10,7 +10,6 @@ const coronaVirus = (bot) => {
       });
     } catch (error) {
       console.log(error);
-      return ctx.reply("error");
     }
   });
 };
