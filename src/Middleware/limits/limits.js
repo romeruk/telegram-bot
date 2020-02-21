@@ -9,7 +9,7 @@ const options = {
   keyfn: defaultKeyFn
 }
 
-const limitsMiddleware = (opts) => async (ctx, next) => {
+const limitsMiddleware = (opts = {}) => async (ctx, next) => {
   const config = Object.assign(options, opts);
 
   const { timeout, replyfn, keyfn } = config;
@@ -21,7 +21,7 @@ const limitsMiddleware = (opts) => async (ctx, next) => {
     return replyfn(ctx, getBlocketUser);
   }
   else {
-    limits.set(value, `blocked for ${timeout} miliseconds`);
+    limits.set(value, `Дозволено 1 повідомлення в ${timeout} мілісекунд`);
     setTimeout(() => {
       limits.delete(value);
     }, timeout);
