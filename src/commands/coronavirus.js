@@ -16,7 +16,6 @@ const coronaVirus = (bot) => {
       const { confirmedCount, deadCount, curedCount, updateTime } = response.data.results[0];
 
       const date = formatDate(updateTime);
-      console.log(date);
 
       return ctx.reply(`Оновлено: <b>${date}</b>\nВсього заразилось: <b>${confirmedCount}</b>\nВсього померло: <b>${deadCount}</b>\nВсього вилікувалось: <b>${curedCount}</b>`, {
         parse_mode: "HTML"
