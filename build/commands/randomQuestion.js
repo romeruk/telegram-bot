@@ -9,6 +9,8 @@ var _question = require("../helpers/question");
 
 var _arrayOfQuestions = require("../helpers/arrayOfQuestions");
 
+var _index = require("../Middleware/index");
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -18,7 +20,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var randomQuestion = function randomQuestion(bot) {
-  bot.command("question", function (ctx) {
+  bot.command("question", (0, _index.limitsMiddleware)(), function (ctx) {
     var randomQuestion = _arrayOfQuestions.questions[Math.floor(Math.random() * _arrayOfQuestions.questions.length)];
 
     var keyboard = []; //generate buttons
@@ -67,7 +69,11 @@ var randomQuestion = function randomQuestion(bot) {
         _ = _Object$entries$_i[0],
         value = _Object$entries$_i[1];
 
-    bot.action(value, function (ctx) {
+    bot.action(value, (0, _index.limitsMiddleware)({
+      replyfn: function replyfn(ctx) {
+        return console.log("blocked");
+      }
+    }), function (ctx) {
       (0, _question.isRightAnswer)(ctx);
       ctx.answerCbQuery();
     });

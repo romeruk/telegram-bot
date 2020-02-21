@@ -5,8 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _index = require("../Middleware/index");
+
 var randomPosition = function randomPosition(bot) {
-  bot.command("pos", function (ctx) {
+  bot.command("pos", (0, _index.limitsMiddleware)(), function (ctx) {
     var players = ['Нова Генерація', 'LOM', 'Универсальный солдат'];
     var positions = [1, 2, 3, 4, 5];
     var msg = '';

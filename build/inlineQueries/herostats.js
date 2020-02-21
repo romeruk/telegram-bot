@@ -9,6 +9,8 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _listheroeshelper = require("../helpers/listheroeshelper");
 
+var _index = require("../Middleware/index");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16,7 +18,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var herostats = function herostats(bot) {
-  bot.inlineQuery(/^herostats: \d+$/,
+  bot.inlineQuery(/^herostats: \d+$/, (0, _index.limitsMiddleware)(),
   /*#__PURE__*/
   function () {
     var _ref = _asyncToGenerator(
@@ -32,14 +34,15 @@ var herostats = function herostats(bot) {
               page = parseInt(query.split(':')[1], 10) || 1; //no sense to do api reguest if page > 3, becose there 130 heroes avaible in dota 2
 
               if (!(page < 4)) {
-                _context.next = 10;
+                _context.next = 16;
                 break;
               }
 
-              _context.next = 6;
+              _context.prev = 4;
+              _context.next = 7;
               return _axios["default"].get("".concat(process.env.OPEN_DOTA_BASE_API_URL, "/heroStats?api_key=").concat(process.env.OPEN_DOTA_KEY));
 
-            case 6:
+            case 7:
               heroes_stats = _context.sent;
               data = heroes_stats.data.slice((page - 1) * dataCount, page * dataCount);
               result = data.map(function (hero, i) {
@@ -56,12 +59,17 @@ var herostats = function herostats(bot) {
               });
               return _context.abrupt("return", ctx.answerInlineQuery(result));
 
-            case 10:
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](4);
+              console.log(_context.t0);
+
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[4, 13]]);
     }));
 
     return function (_x) {

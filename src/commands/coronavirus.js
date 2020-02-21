@@ -1,9 +1,9 @@
 import axios from 'axios';
-import cheerio from "cheerio";
 import { limitsMiddleware } from '../Middleware/index';
+import { formatDate } from '../helpers/math';
 
 const coronaVirus = (bot) => {
-  bot.command("coronavirustest", limitsMiddleware(), async (ctx) => {
+  bot.command("coronavirus", limitsMiddleware(), async (ctx) => {
     try {
       // const response = await axios.get("https://www.worldometers.info/coronavirus/");
       // const $ = cheerio.load(response.data);
@@ -13,8 +13,12 @@ const coronaVirus = (bot) => {
         timeout: 20 * 1000
       });
 
-      const { confirmedCount, deadCount, curedCount } = response.data.results[0];
-      return ctx.reply(`Всього заразилось: <b>${confirmedCount}</b>\nВсього померло: <b>${deadCount}</b>\nВсього вилікувалось: <b>${curedCount}</b>`, {
+      const { confirmedCount, deadCount, curedCount, updateTime } = response.data.results[0];
+
+      const date = formatDate(updateTime);
+      console.log(date);
+
+      return ctx.reply(`Оновлено: <b>${date}</b>\nВсього заразилось: <b>${confirmedCount}</b>\nВсього померло: <b>${deadCount}</b>\nВсього вилікувалось: <b>${curedCount}</b>`, {
         parse_mode: "HTML"
       });
     } catch (error) {

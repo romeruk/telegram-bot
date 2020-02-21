@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _math = require("../helpers/math");
 
+var _index = require("../Middleware/index");
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -16,7 +18,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var roll = function roll(bot) {
-  bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], function (ctx) {
+  bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], (0, _index.limitsMiddleware)(), function (ctx) {
     var text = ctx.message.text;
 
     var _text$slice$split = text.slice(6, text.length).split('-'),
