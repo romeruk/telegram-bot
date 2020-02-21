@@ -1,8 +1,9 @@
 import { isRightAnswer } from '../helpers/question';
 import { questions, variants } from '../helpers/arrayOfQuestions';
+import { limitsMiddleware } from "../Middleware/index";
 
 const randomQuestion = (bot) => {
-  bot.command("question", ctx => {
+  bot.command("question", limitsMiddleware(), ctx => {
 
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
@@ -31,7 +32,7 @@ const randomQuestion = (bot) => {
 
   //register actions 
   for (let [_, value] of Object.entries(variants)) {
-    bot.action(value, (ctx) => {
+    bot.action(value, limitsMiddleware({ replyfn: (ctx) => console.log("blocked") }), (ctx) => {
       isRightAnswer(ctx);
       ctx.answerCbQuery()
     });

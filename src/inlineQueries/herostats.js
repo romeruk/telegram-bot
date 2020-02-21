@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { primary_attr, attack_type } from "../helpers/listheroeshelper";
+import { limitsMiddleware } from "../Middleware/index";
 
 const herostats = (bot) => {
-  bot.inlineQuery(/^herostats: \d+$/, async (ctx) => {
+  bot.inlineQuery(/^herostats: \d+$/, limitsMiddleware(), async (ctx) => {
     const { query } = ctx.inlineQuery;
     const dataCount = 50;
     let page = parseInt(query.split(':')[1], 10) || 1;

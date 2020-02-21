@@ -1,5 +1,7 @@
+import { limitsMiddleware } from "../Middleware/index";
+
 const randomPosition = (bot) => {
-  bot.command("pos", (ctx) => {
+  bot.command("pos", limitsMiddleware(), (ctx) => {
     const players = ['Нова Генерація', 'LOM', 'Универсальный солдат'];
     let positions = [1, 2, 3, 4, 5];
     let msg = '';
