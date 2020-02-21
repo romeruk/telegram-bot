@@ -3,7 +3,7 @@ import { limitsMiddleware } from '../Middleware/index';
 import { formatDate } from '../helpers/math';
 
 const coronaVirus = (bot) => {
-  bot.command("coronavirus", limitsMiddleware(), async (ctx) => {
+  bot.command("coronavirustest", limitsMiddleware(), async (ctx) => {
     try {
       // const response = await axios.get("https://www.worldometers.info/coronavirus/");
       // const $ = cheerio.load(response.data);

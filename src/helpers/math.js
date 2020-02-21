@@ -5,18 +5,15 @@ export const randomNumber = (min, max) => {
 }
 
 export const formatDate = (date) => {
-  let d = new Date(date);
-  let month = '' + (d.getMonth() + 1);
-  let day = '' + d.getDate();
-  let year = d.getFullYear();
-  let hours = d.getHours();
-  let minutes = d.getMinutes();
-  let seconds = d.getSeconds();
+  let str = new Date(date).toLocaleDateString('uk-UA', {
+    weekday: "long",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  });
 
-  if (month.length < 2)
-    month = '0' + month;
-  if (day.length < 2)
-    day = '0' + day;
-
-  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  return str;
 }
