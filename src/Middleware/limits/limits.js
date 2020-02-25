@@ -11,7 +11,6 @@ const options = {
 
 const limitsMiddleware = (opts = {}) => async (ctx, next) => {
   const config = Object.assign(options, opts);
-
   const { timeout, replyfn, keyfn } = config;
 
   const value = keyfn(ctx);
