@@ -6,7 +6,7 @@ import { formatDate } from '../helpers/math';
 import StringFormat from '../helpers/stringFormat';
 
 const coronaVirus = (bot) => {
-  bot.command("coronavirus1", limitsMiddleware(), async (ctx) => {
+  bot.command("coronavirus", limitsMiddleware(), async (ctx) => {
     try {
       const responseScraping = await axios.get("https://www.worldometers.info/coronavirus/");
       const $ = cheerio.load(responseScraping.data);
