@@ -1,29 +1,34 @@
+import util from 'util';
+const sleep = util.promisify(setTimeout);
+
 const limits = new Map();
 
-const defaultReplyFn = (ctx, msg) => ctx.reply(msg);
+const defaultReplyFn = (ctx, msg) => console.log(msg);
 const defaultKeyFn = (ctx) => ctx.from.id;
 
 const options = {
-  timeout: 5000,
+  timeout: 1500,
   replyfn: defaultReplyFn,
   keyfn: defaultKeyFn
 }
 
 const limitsMiddleware = (opts = {}) => async (ctx, next) => {
-  const config = Object.assign(options, opts);
+  const config = Object.assign({}, options, {
+    ...opts
+  });
   const { timeout, replyfn, keyfn } = config;
 
   const value = keyfn(ctx);
-  const getBlocketUser = limits.get(value);
+  const getBlockedUser = limits.get(value);
 
-  if (getBlocketUser) {
-    return replyfn(ctx, getBlocketUser);
+  if (getBlockedUser) {
+    return replyfn(ctx, getBlockedUser);
   }
   else {
     limits.set(value, `Дозволено 1 повідомлення в ${timeout} мілісекунд`);
-    setTimeout(() => {
-      limits.delete(value);
-    }, timeout);
+    await sleep(timeout);
+    limits.delete(value);
+
   }
 
   await next()

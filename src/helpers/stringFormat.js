@@ -1,10 +1,10 @@
-export default function StringFormat(strings, ...values) {
+export default function StringFormat(strings, ...placeholders) {
 
   let output = '';
-  for (let i = 0; i < values.length; i++) {
-    output += strings[i] + values[i];
+  for (let i = 0; i < placeholders.length; i++) {
+    output += strings[i] + placeholders[i];
   }
-  output += strings[values.length];
+  output += strings[placeholders.length];
 
   let lines = output.split(/(?:\r\n|\n|\r)/);
 

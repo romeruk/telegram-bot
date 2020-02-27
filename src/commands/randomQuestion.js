@@ -32,7 +32,7 @@ const randomQuestion = (bot) => {
 
   //register actions 
   for (let [_, value] of Object.entries(variants)) {
-    bot.action(value, limitsMiddleware({ replyfn: (ctx) => console.log("blocked") }), (ctx) => {
+    bot.action(value, limitsMiddleware(), (ctx) => {
       isRightAnswer(ctx);
       ctx.answerCbQuery()
     });

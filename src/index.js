@@ -1,10 +1,9 @@
 import '@babel/polyfill';
+require('dotenv').config();
 import Telegraf from 'telegraf';
 import commands from './commands/';
 import hears from './hears/';
 import inlineQueries from './inlineQueries/';
-
-require('dotenv').config();
 
 const bot = new Telegraf(process.env.API_TOKEN);
 bot.start((ctx) => ctx.reply('Welcome'))

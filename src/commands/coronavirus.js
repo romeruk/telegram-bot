@@ -21,8 +21,7 @@ const coronaVirus = (bot) => {
 
       const date = formatDate(updateTime);
 
-      return ctx.reply(StringFormat`
-          Web scraping data:
+      return ctx.reply(StringFormat`Web scraping data:
           Оновлено: <b>${webScrpDate}</b>
           Всього заразилось: <b>${$(confirmed).text()}</b>
           Всього померло: <b>${$(deaths).text()}</b>
