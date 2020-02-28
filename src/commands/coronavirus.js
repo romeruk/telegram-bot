@@ -4,6 +4,7 @@ import cheerio from 'cheerio';
 import { limitsMiddleware } from '../Middleware/index';
 import { formatDate } from '../helpers/math';
 import StringFormat from '../helpers/stringFormat';
+import debug from '../helpers/debug'
 
 const coronaVirus = (bot) => {
   bot.command("coronavirus", limitsMiddleware(), async (ctx) => {
@@ -36,10 +37,8 @@ const coronaVirus = (bot) => {
           parse_mode: "HTML"
         });
     } catch (error) {
-      console.log(error);
+      debug(error);
     }
-
-    return ctx.reply("error getting data");
   });
 };
 

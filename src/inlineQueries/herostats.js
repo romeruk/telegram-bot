@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { primary_attr, attack_type } from "../helpers/listheroeshelper";
 import { limitsMiddleware } from "../Middleware/index";
+import debug from '../helpers/debug'
 
 const herostats = (bot) => {
   bot.inlineQuery(/^herostats: \d+$/, limitsMiddleware(), async (ctx) => {
@@ -32,7 +33,7 @@ const herostats = (bot) => {
 
         return ctx.answerInlineQuery(result);
       } catch (error) {
-        console.log(error);
+        debug(error);
       }
     }
 

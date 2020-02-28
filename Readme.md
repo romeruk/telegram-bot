@@ -8,7 +8,7 @@
 
 <details>
   <summary>/roll</summary>
-  <p>Рандомне значення від 1 до 1000</p>
+  <p>Рандомне значення від 1 до 100</p>
 </details>
 <details>
   <summary>/roll < from-to > </summary>
@@ -59,7 +59,7 @@ npm install
 
 ### Run in dev mod
 
-Встановлення залежностей:
+Запуск в режимі розробки (nodemon):
 
 ```
 npm run dev
@@ -67,7 +67,8 @@ npm run dev
 
 ## Deployment
 
-Виконати команду:
+Завантажте на хостинг та виконайте команду
+Необхідно встановити URL та MODE змінні середовища
 
 ```
 npm run start
