@@ -29,10 +29,13 @@
   <p>Приклад @Ecc1bot herostats: 1, доступно 3 сторінки</p>
 </details>
 <details>
-  <summary>/coronavirus</summary>
+  <summary>/coronavirus або /covid19</summary>
   <p>Показує ситуацію з коронавірусом</p>
-  <p>Метод 1 - веб скрапінг (https://www.worldometers.info/coronavirus/)</p>
-  <p>Метод 2 - апі (http://lab.isaaclin.cn/nCoV/api/overall)</p>
+</details>
+<details>
+  <summary>/covid19 < country > </summary>
+  <p>Показує ситуацію з коронавірусом в країні</p>
+  <p>Приклад /covid19 Ukraine</p>
 </details>
 
 ### Prerequisites
