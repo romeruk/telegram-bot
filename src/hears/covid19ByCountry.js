@@ -8,7 +8,6 @@ const covid19ByCountry = (bot) => {
   bot.hears(/^\/covid19 ([a-zA-Z]){2,15}$/, limitsMiddleware(), async (ctx) => {
     const { text } = ctx.message;
     const country = text.split(" ")[1];
-    console.log(country);
     try {
       const response = await axios.get(`${process.env.COVID19_API_URL}/countries/${country}`, {
         timeout: 20 * 1000

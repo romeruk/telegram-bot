@@ -50,6 +50,7 @@ PORT=порт
 MODE="dev"
 OPEN_DOTA_KEY="api.opendota.com ключ"
 OPEN_DOTA_BASE_API_URL="https://api.opendota.com/api"
+COVID19_API_URL= "https://covid19.mathdro.id/api"
 ```
 
 ### Installing
@@ -81,4 +82,3 @@ npm run start
 
 - [telegraf](https://telegraf.js.org/#/) - Modern telegram bot framework
 - [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
-- [cheerio](https://github.com/cheeriojs/cheerio) - Fast, flexible, and lean implementation of core jQuery designed specifically for the server.
