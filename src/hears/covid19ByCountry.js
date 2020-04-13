@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formatDate } from '../helpers/math';
+import { formatDate, numberWithCommas } from '../helpers/math';
 import { limitsMiddleware } from "../Middleware/index";
 import StringFormat from '../helpers/stringFormat';
 import debug from '../helpers/debug'
@@ -20,9 +20,9 @@ const covid19ByCountry = (bot) => {
       return ctx.reply(StringFormat`
           Дані для країни: <b>${country}</b>
           Оновлено: <b>${date}</b>
-          Всього заразилось: <b>${confirmed.value}</b>
-          Всього вилікувалось <b>${recovered.value}</b>
-          Всього померло: <b>${deaths.value}</b>`,
+          Всього заразилось: <b>${numberWithCommas(confirmed.value)}</b>
+          Всього вилікувалось <b>${numberWithCommas(recovered.value)}</b>
+          Всього померло: <b>${numberWithCommas(deaths.value)}</b>`,
         {
           parse_mode: "HTML"
         });
