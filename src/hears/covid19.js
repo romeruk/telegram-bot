@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { formatDate, numberWithCommas } from '../helpers/math';
 import { limitsMiddleware } from '../Middleware/index';
-import normalizeString from '../helpers/normalizeString';
 import debug from '../helpers/debug';
 
 const covid19 = (bot) => {
@@ -26,11 +25,11 @@ const covid19 = (bot) => {
         const date = formatDate(lastUpdate);
 
         return ctx.reply(
-          normalizeString`
-          Оновлено: <b>${date}</b>
-          Всього заразилось: <b>${numberWithCommas(confirmed.value)}</b>
-          Всього вилікувалось <b>${numberWithCommas(recovered.value)}</b>
-          Всього померло: <b>${numberWithCommas(deaths.value)}</b>`,
+          `Оновлено: <b>${date}</b>\nВсього заразилось: <b>${numberWithCommas(
+            confirmed.value
+          )}</b>\nВсього вилікувалось <b>${numberWithCommas(
+            recovered.value
+          )}</b>\nВсього померло: <b>${numberWithCommas(deaths.value)}</b>`,
           {
             parse_mode: 'HTML',
           }

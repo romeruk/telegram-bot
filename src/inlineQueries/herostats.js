@@ -2,7 +2,6 @@ import axios from 'axios';
 import { primary_attr, attack_type } from '../helpers/listheroeshelper';
 import { limitsMiddleware } from '../Middleware/index';
 import debug from '../helpers/debug';
-import normalizeString from '../helpers/normalizeString';
 
 const herostats = (bot) => {
   bot.inlineQuery(/^herostats: \d+$/, limitsMiddleware(), async (ctx) => {
@@ -28,15 +27,21 @@ const herostats = (bot) => {
             id: String(i),
             title: hero.localized_name,
             input_message_content: {
-              message_text: normalizeString`
-              <b>Назва героя:</b> ${hero.localized_name}
-              <b>Основний атрибут:</b> ${primary_attr(hero.primary_attr)}
-              <b>Базова швидкість руху:</b> ${hero.move_speed}
-              <b>Тип атаки:</b> ${attack_type(hero.attack_type)}
-              <b>Базова сила:</b> ${hero.base_str}
-              <b>Базова спритність:</b> ${hero.base_agi}
-              <b>Базовий інтелект:</b> ${hero.base_int}
-              <b>Іграбельні позиції:</b> ${hero.roles.join()}`,
+              message_text: `<b>Назва героя:</b> ${
+                hero.localized_name
+              }\n<b>Основний атрибут:</b> ${primary_attr(
+                hero.primary_attr
+              )}\n<b>Базова швидкість руху:</b> ${
+                hero.move_speed
+              }\n<b>Тип атаки:</b> ${attack_type(
+                hero.attack_type
+              )}\n<b>Базова сила:</b> ${
+                hero.base_str
+              }\n<b>Базова спритність:</b> ${
+                hero.base_agi
+              }\n<b>Базовий інтелект:</b> ${
+                hero.base_int
+              }\n<b>Іграбельні позиції:</b> ${hero.roles.join()}`,
               parse_mode: 'HTML',
             },
             thumb_url: `https://api.opendota.com${hero.icon}`,
