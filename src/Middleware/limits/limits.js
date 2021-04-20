@@ -9,12 +9,12 @@ const defaultKeyFn = (ctx) => ctx.from.id;
 const options = {
   timeout: 1500,
   replyfn: defaultReplyFn,
-  keyfn: defaultKeyFn
-}
+  keyfn: defaultKeyFn,
+};
 
 const limitsMiddleware = (opts = {}) => async (ctx, next) => {
   const config = Object.assign({}, options, {
-    ...opts
+    ...opts,
   });
   const { timeout, replyfn, keyfn } = config;
 
@@ -23,15 +23,13 @@ const limitsMiddleware = (opts = {}) => async (ctx, next) => {
 
   if (getBlockedUser) {
     return replyfn(ctx, getBlockedUser);
-  }
-  else {
+  } else {
     limits.set(value, `Дозволено 1 повідомлення в ${timeout} мілісекунд`);
     await sleep(timeout);
     limits.delete(value);
-
   }
 
-  await next()
+  await next();
 };
 
 export default limitsMiddleware;

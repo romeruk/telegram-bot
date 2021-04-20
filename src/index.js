@@ -6,7 +6,7 @@ import hears from './hears/';
 import inlineQueries from './inlineQueries/';
 
 const bot = new Telegraf(process.env.API_TOKEN);
-bot.start((ctx) => ctx.reply('Welcome'))
+bot.start((ctx) => ctx.reply('Welcome'));
 
 const helpMesssage = `
 Доступні команди:
@@ -25,12 +25,9 @@ commands(bot);
 hears(bot);
 inlineQueries(bot);
 
-
-if (process.env.MODE === "prod") {
+if (process.env.MODE === 'prod') {
   bot.telegram.setWebhook(`${process.env.URL}/bot${process.env.API_TOKEN}`);
   bot.startWebhook(`/bot${process.env.API_TOKEN}`, null, process.env.PORT);
-}
-else {
+} else {
   bot.launch();
 }
-

@@ -1,29 +1,31 @@
 {
-	"name": "telegramBbot",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"clean": "rm -rf build && mkdir build",
-		"build-babel": "babel -d ./build ./src -s",
-		"build": "npm run clean && npm run build-babel",
-		"start": "npm run build && node ./build/index.js",
-		"dev": "nodemon --exec babel-node ./src/index.js"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"axios": "^0.19.2",
-		"dotenv": "^8.2.0",
-		"nodemon": "^2.0.2",
-		"telegraf": "^3.36.0"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.8.4",
-		"@babel/core": "^7.9.0",
-		"@babel/node": "^7.8.7",
-		"@babel/polyfill": "^7.8.7",
-		"@babel/preset-env": "^7.9.5"
-	}
+  "name": "telegramBbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js",
+    "dev": "nodemon --exec babel-node ./src/index.js",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2",
+    "telegraf": "^3.36.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "prettier": "^2.2.1"
+  }
 }

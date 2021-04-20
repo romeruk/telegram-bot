@@ -1,20 +1,21 @@
-import { limitsMiddleware } from "../Middleware/index";
+import { limitsMiddleware } from '../Middleware/index';
 
 const randomPosition = (bot) => {
-  bot.command("pos", limitsMiddleware(), (ctx) => {
+  bot.command('pos', limitsMiddleware(), (ctx) => {
     const players = ['Нова Генерація', 'LOM', 'Универсальный солдат'];
     let positions = [1, 2, 3, 4, 5];
     let msg = '';
 
     for (let player of players) {
-      const randomPosition = positions[Math.floor(Math.random() * positions.length)];
+      const randomPosition =
+        positions[Math.floor(Math.random() * positions.length)];
       msg += `<b>${player}: ${randomPosition}</b>\n`;
 
-      positions = positions.filter(item => item !== randomPosition);
+      positions = positions.filter((item) => item !== randomPosition);
     }
 
     return ctx.reply(msg, {
-      parse_mode: "HTML"
+      parse_mode: 'HTML',
     });
   });
 };

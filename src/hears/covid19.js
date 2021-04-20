@@ -1,32 +1,45 @@
 import axios from 'axios';
-import { limitsMiddleware } from '../Middleware/index';
 import { formatDate, numberWithCommas } from '../helpers/math';
-import StringFormat from '../helpers/stringFormat';
-import debug from '../helpers/debug'
+import { limitsMiddleware } from '../Middleware/index';
+import normalizeString from '../helpers/normalizeString';
+import debug from '../helpers/debug';
 
 const covid19 = (bot) => {
-  bot.hears([/^\/covid19$/, /^\/coronavirus$/], limitsMiddleware(), async (ctx) => {
-    try {
-      const response = await axios.get(`${process.env.COVID19_API_URL}`, {
-        timeout: 20 * 1000
-      });
+  bot.hears(
+    [/^\/covid19 ([a-zA-Z]){2,15}$/, /^\/covid19$/],
+    limitsMiddleware(),
+    async (ctx) => {
+      const { text } = ctx.message;
+      const country = text.split(' ')[1];
 
-      const { confirmed, recovered, deaths, lastUpdate } = response.data;
+      try {
+        let response = {};
+        const API_URL = process.env.COVID19_API_URL;
+        if (text.length === 8) {
+          response = await axios.get(`${API_URL}`);
+        } else {
+          response = await axios.get(`${API_URL}/countries/${country}`);
+        }
 
-      const date = formatDate(lastUpdate);
+        const { confirmed, recovered, deaths, lastUpdate } = response.data;
 
-      return ctx.reply(StringFormat`
+        const date = formatDate(lastUpdate);
+
+        return ctx.reply(
+          normalizeString`
           Оновлено: <b>${date}</b>
           Всього заразилось: <b>${numberWithCommas(confirmed.value)}</b>
           Всього вилікувалось <b>${numberWithCommas(recovered.value)}</b>
           Всього померло: <b>${numberWithCommas(deaths.value)}</b>`,
-        {
-          parse_mode: "HTML"
-        });
-    } catch (error) {
-      debug(error);
+          {
+            parse_mode: 'HTML',
+          }
+        );
+      } catch (error) {
+        debug(error);
+      }
     }
-  });
+  );
 };
 
 export default covid19;

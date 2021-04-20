@@ -1,5 +1,5 @@
 import { randomNumber } from '../helpers/math';
-import { limitsMiddleware } from "../Middleware/index";
+import { limitsMiddleware } from '../Middleware/index';
 
 const roll = (bot) => {
   bot.hears([/^\/roll \d+\-\d+$/, /^\/roll$/], limitsMiddleware(), (ctx) => {
@@ -11,8 +11,7 @@ const roll = (bot) => {
     from = parseInt(from, 10);
     to = parseInt(to, 10);
 
-    if ((!isNaN(from) && !isNaN(to)) && (from < to)) {
-
+    if (!isNaN(from) && !isNaN(to) && from < to) {
       from = from > MAX || from < MIN ? MIN : from;
       to = to > MAX ? MAX : to;
 
@@ -20,8 +19,7 @@ const roll = (bot) => {
     }
 
     return ctx.reply(randomNumber(1, 100));
-
   });
-}
+};
 
 export default roll;
