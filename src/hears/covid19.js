@@ -5,7 +5,7 @@ import debug from '../helpers/debug';
 
 const covid19 = (bot) => {
   bot.hears(
-    [/^\/covid19 ([a-zA-Z]){2,15}$/, /^\/covid19$/],
+    [/^\/covid19 ([a-zA-Z]).{0,}$/, /^\/covid19$/],
     limitsMiddleware(),
     async (ctx) => {
       const { text } = ctx.message;
@@ -14,7 +14,7 @@ const covid19 = (bot) => {
       try {
         let response = {};
         const API_URL = process.env.COVID19_API_URL;
-        if (text.length === 8) {
+        if (!country) {
           response = await axios.get(`${API_URL}`);
         } else {
           response = await axios.get(`${API_URL}/countries/${country}`);
